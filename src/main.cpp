@@ -105,23 +105,31 @@ void setup() {
   
   Serial.println("=== ESP32-S3 Servo + TOF Controller Ready ===");
   Serial.println("Hardware: SDA=Pin21, SCL=Pin15, Servo=Pin17");
-  Serial.println("Servo will sweep and take distance measurements");
+  Serial.println("Scanning Pattern: 0°→180° (pause 1s) → 180°→0° (pause 5s for stepper)");
 }
 
 void loop() {
-  // Smooth move from 0 to 180 degrees with TOF readings
-  Serial.println("\n=== Sweeping from 0 to 180 degrees ===");
+  delay(1000);
+  // Phase 1: Sweep from 0 to 180 degrees with TOF readings
+  Serial.println("\n=== PHASE 1: Sweeping from 0° to 180° ===");
   smoothMoveServoWithTOF(minDegree, maxDegree);
   
-  // Wait at max position
-  Serial.println("Pausing at 180 degrees...\n");
+  // Phase 2: Pause at 180 degrees for 1 second
+  Serial.println("=== PHASE 2: Pausing at 180° for 1 second ===");
   delay(1000);
   
-  // Smooth move back from 180 to 0 degrees with TOF readings
-  Serial.println("=== Sweeping from 180 to 0 degrees ===");
+  // Phase 3: Sweep back from 180 to 0 degrees with TOF readings
+  Serial.println("=== PHASE 3: Sweeping from 180° to 0° ===");
   smoothMoveServoWithTOF(maxDegree, minDegree);
   
-  // Wait at min position before repeating
-  Serial.println("Pausing at 0 degrees...\n");
-  delay(1000);
+  // Phase 4: Long pause at 0 degrees for stepper motor operation
+  Serial.println("=== PHASE 4: Pausing at 0° for 5 seconds (stepper motor time) ===");
+  for (int i = 5; i > 0; i--) {
+    Serial.print("Stepper pause countdown: ");
+    Serial.print(i);
+    Serial.println(" seconds remaining...");
+    delay(1000);
+  }
+  
+  Serial.println("=== Scan cycle complete! Starting next cycle... ===\n");
 }
