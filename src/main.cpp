@@ -17,7 +17,7 @@ const int sclPin = 15;  // I2C SCL for TOF sensor (updated to pin 15)
 // Servo movement parameters
 const int minDegree = 0;
 const int maxDegree = 180;
-const int stepDelay = 200; // Delay for coordinate acquisition
+const int stepDelay = 100; // Delay for coordinate acquisition
 int currentServoPos = 0;
 
 // TOF measurement variables
