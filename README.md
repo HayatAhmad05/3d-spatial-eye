@@ -10,7 +10,9 @@ A real-time 3D point cloud scanner for Raspberry Pi 5, featuring a web-based vis
 ![Demo GIF](docs/images/demo.gif)
 *Add a demo GIF or screenshot showing the scanner in action*
 -->
-![Description](docs/images/3965d28e-4857-4178-bdc0-7bb06643f7ca.jpg)
+<p align="center">
+  <img src="docs/images/3965d28e-4857-4178-bdc0-7bb06643f7ca.jpg" width="400" alt="3D Spatial Eye Scanner">
+</p>
 
 ## Features
 
