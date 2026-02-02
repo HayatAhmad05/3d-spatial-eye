@@ -1,0 +1,19 @@
+# 3D Spatial Eye - Dependencies
+
+# Hardware interfaces (Raspberry Pi specific)
+vl53l1x>=0.0.5          # VL53L1X TOF sensor library
+gpiozero>=2.0           # GPIO control (servo, stepper)
+pigpio>=1.78            # Low-level GPIO for precise PWM
+RPi.GPIO>=0.7.1         # Fallback GPIO library
+
+# Web server
+flask>=3.0
+flask-socketio>=5.3
+python-socketio>=5.10
+eventlet>=0.35          # Async support for Flask-SocketIO
+
+# Data processing
+numpy>=1.26
+
+# Utilities
+smbus2>=0.4.3           # I2C communication

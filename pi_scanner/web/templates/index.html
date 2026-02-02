@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Spatial Eye - Point Cloud Scanner</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <h1>3D Spatial Eye</h1>
+            <div class="status-indicator">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="status-text">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <div class="main-container">
+            <!-- 3D Viewer -->
+            <div class="viewer-container">
+                <div id="viewer"></div>
+                <div class="viewer-overlay">
+                    <div class="stats">
+                        <div class="stat">
+                            <span class="stat-label">Points</span>
+                            <span class="stat-value" id="point-count">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Servo</span>
+                            <span class="stat-value" id="servo-angle">0°</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Stepper</span>
+                            <span class="stat-value" id="stepper-angle">0°</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Progress</span>
+                            <span class="stat-value" id="progress">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2>Scanner Controls</h2>
+                
+                <!-- Scan Controls -->
+                <div class="control-group">
+                    <h3>Scan</h3>
+                    <div class="button-row">
+                        <button id="btn-start" class="btn btn-primary">Start Scan</button>
+                        <button id="btn-stop" class="btn btn-danger" disabled>Stop</button>
+                    </div>
+                    <div class="button-row">
+                        <button id="btn-pause" class="btn btn-secondary" disabled>Pause</button>
+                        <button id="btn-resume" class="btn btn-secondary" disabled>Resume</button>
+                    </div>
+                    <div class="button-row">
+                        <button id="btn-reset" class="btn btn-warning">Reset</button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="control-group">
+                    <h3>Scan Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-bar"></div>
+                    </div>
+                    <p class="progress-text" id="progress-text">Ready to scan</p>
+                </div>
+
+                <!-- View Controls -->
+                <div class="control-group">
+                    <h3>View Controls</h3>
+                    <div class="slider-group">
+                        <label for="point-size">Point Size</label>
+                        <input type="range" id="point-size" min="1" max="10" value="3">
+                    </div>
+                    <div class="button-row">
+                        <button id="btn-reset-view" class="btn btn-secondary">Reset View</button>
+                        <button id="btn-fit-view" class="btn btn-secondary">Fit to Points</button>
+                    </div>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="show-axes" checked>
+                            Show Axes
+                        </label>
+                        <label>
+                            <input type="checkbox" id="show-grid" checked>
+                            Show Grid
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Export Controls -->
+                <div class="control-group">
+                    <h3>Export</h3>
+                    <div class="button-row">
+                        <button id="btn-export-ply" class="btn btn-export">Download PLY</button>
+                        <button id="btn-export-pcd" class="btn btn-export">Download PCD</button>
+                    </div>
+                </div>
+
+                <!-- Connection Status -->
+                <div class="control-group">
+                    <h3>Connection</h3>
+                    <p id="connection-status">Connecting to scanner...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="/static/viewer.js"></script>
+</body>
+</html>
